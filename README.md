@@ -31,3 +31,5 @@
 //     add:'Mirzo Ulugbek'
 // }
 // obj ichidagi nameda 'a' harfini bor yoqligini tekshirng
+
+[bind](./js/bind.jpg)

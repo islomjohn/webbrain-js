@@ -2,3 +2,5 @@
 *.avi
 *.mkv
 video
+
+node_modules

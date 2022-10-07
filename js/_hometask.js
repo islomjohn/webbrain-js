@@ -8,7 +8,10 @@ const getLength = (arr) => arr.filter(item => item.length === 5)
 
 //! 3
 const getBool = (arr) => arr.filter(item => item === false || item === true)
-// console.log(getBool([1,2,3,true,'true']));
+const isBool = (arr) => arr.filter(item => typeof(item) === "boolean")
+console.log(getBool([1,2,3,true,'true']));
+console.log(isBool([1,2,3,true,'true']));
+
 
 //! 4
 const findLetter = (str) => str.toLowerCase().includes("a")

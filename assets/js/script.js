@@ -51,38 +51,44 @@ let g15 = [
 const section = document.querySelector("#section");
 const table = document.querySelector(".table")
 const btn = document.querySelector("#button-addon2")
-const formName = document.querySelector("#form-name")
-const formAge = document.querySelector("#form-name")
-const formJob = document.querySelector("#form-job")
+const newUserName = document.querySelector("#form-name")
+const newUserAge = document.querySelector("#form-age")
+const newUserJob = document.querySelector("#form-job")
+const search = document.querySelector("#floatingSearch")
+const badge = document.querySelector(".badge")
 
-let newUserName = "";
-let newUserAge = "";
-let newUserJob = "";
-
-
+let searchText = "";
 
 function onDelete(item) {
-  console.log(5);
   g15 = g15.filter(({id}) => id !== item)
   render()
 }
-function onCreate(e) {
-  
-  if(formName.length){
-    if(formAge.length){
-      data.push({id: g15.length + 1, name: newUserName, age: newUserAge, job: newUserJob})
+
+function onCreate() {
+  if(newUserName.value) {
+    if(newUserAge.value){
+      if(newUserJob.value){
+        g15.push({id: g15.length + 1, name: newUserName.value, age: newUserAge.value, job: newUserJob.value})
+        render()
+      }
     }
   }
-  render()
 }
-formName.addEventListener("input", onCreate)
-formAge.addEventListener("input", onCreate)
-formJob.addEventListener("input", onCreate)
+btn.addEventListener("click", onCreate)
+
+search.addEventListener("input", (e) => {
+  searchText = e.target.value
+  console.log(searchText);
+  render()
+  console.log(render());
+})
+
 
 function render() {
-  table.innerHTML = `
+  badge.textContent = `Users ${g15.length}`
+  table.innerHTML = g15.map((val) => val.name.toLowerCase().includes(searchText.toLowerCase())) && `
   <thead class="table-light">
-    <tr class="fs-4">
+    <tr class="fs-5">
       <th>ID</th>
       <th>Name</th>
       <th>Age</th>
@@ -93,7 +99,7 @@ function render() {
   <tbody class="table-group-divide">
    ${g15.map(({id,name,age,job}, index) => {
     return `
-    <tr class="fs-5">
+    <tr class="fs-6">
       <td>${index + 1}</td>
       <td>${name}</td>
       <td>${age}</td>
@@ -104,8 +110,9 @@ function render() {
 
     </tr>
     `
-   }).join(" ")}
+   }).filter(Boolean).join(" ")}
   </tbody>
   `
+  return 1
 }
 render()

@@ -56,12 +56,14 @@ const newUserAge = document.querySelector("#form-age")
 const newUserJob = document.querySelector("#form-job")
 const search = document.querySelector("#floatingSearch")
 const badge = document.querySelector(".badge")
-
 let searchText = "";
 
 function onDelete(item) {
-  g15 = g15.filter(({id}) => id !== item)
-  render()
+  let accessToDelete = window.confirm("Are you sure want to delete this item..?")
+  if(accessToDelete) {
+    g15 = g15.filter(({id}) => id !== item)
+    render()
+  }
 }
 
 function onCreate() {
@@ -76,7 +78,7 @@ function onCreate() {
 }
 btn.addEventListener("click", onCreate)
 
-search.addEventListener("input", (e) => {
+search.addEventListener("keyup", (e) => {
   searchText = e.target.value
   render()
 })
@@ -109,5 +111,6 @@ function render() {
    `).filter(Boolean).join(" ")}
   </tbody>
   `
+  searchText.value = ""
 }
 render()

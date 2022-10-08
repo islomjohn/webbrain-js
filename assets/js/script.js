@@ -62,7 +62,8 @@ function onDelete(item) {
   let accessToDelete = window.confirm("Are you sure want to delete this item..?")
   if(accessToDelete) {
     g15 = g15.filter(({id}) => id !== item)
-    render()
+    search.value = ""
+    sorted()
   }
 }
 
@@ -78,7 +79,7 @@ function onCreate() {
 }
 btn.addEventListener("click", onCreate)
 
-search.addEventListener("keyup", (e) => {
+search.addEventListener("input", (e) => {
   searchText = e.target.value
   render()
 })
@@ -87,15 +88,6 @@ search.addEventListener("keyup", (e) => {
 function render() {
   badge.textContent = `Users ${g15.length}`
   table.innerHTML = `
-  <thead class="table-light">
-    <tr class="fs-5">
-      <th>ID</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Job</th>
-      <th>Edit</th>
-    </tr>
-  </thead>
   <tbody class="table-group-divide">
    ${g15.map(({id,name,age,job}, index) => name.toLowerCase().includes(searchText.toLowerCase()) && `
    <tr class="fs-6">
@@ -111,6 +103,24 @@ function render() {
    `).filter(Boolean).join(" ")}
   </tbody>
   `
-  searchText.value = ""
+}
+function sorted() {
+  badge.textContent = `Users ${g15.length}`
+  table.innerHTML = `
+  <tbody class="table-group-divide">
+   ${g15.map(({id,name,age,job}, index) => `
+   <tr class="fs-6">
+     <td>${index + 1}</td>
+     <td>${name}</td>
+     <td>${age}</td>
+     <td>${job}</td>
+     <td>
+       <button onclick="onDelete(${id})" class="btn btn-danger">Delete</button>
+     </td>
+
+   </tr>
+   `).filter(Boolean).join(" ")}
+  </tbody>
+  `
 }
 render()

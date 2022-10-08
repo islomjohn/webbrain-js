@@ -78,15 +78,13 @@ btn.addEventListener("click", onCreate)
 
 search.addEventListener("input", (e) => {
   searchText = e.target.value
-  console.log(searchText);
   render()
-  console.log(render());
 })
 
 
 function render() {
   badge.textContent = `Users ${g15.length}`
-  table.innerHTML = g15.map((val) => val.name.toLowerCase().includes(searchText.toLowerCase())) && `
+  table.innerHTML = `
   <thead class="table-light">
     <tr class="fs-5">
       <th>ID</th>
@@ -97,22 +95,19 @@ function render() {
     </tr>
   </thead>
   <tbody class="table-group-divide">
-   ${g15.map(({id,name,age,job}, index) => {
-    return `
-    <tr class="fs-6">
-      <td>${index + 1}</td>
-      <td>${name}</td>
-      <td>${age}</td>
-      <td>${job}</td>
-      <td>
-        <button onclick="onDelete(${id})" class="btn btn-danger">Delete</button>
-      </td>
+   ${g15.map(({id,name,age,job}, index) => name.toLowerCase().includes(searchText.toLowerCase()) && `
+   <tr class="fs-6">
+     <td>${index + 1}</td>
+     <td>${name}</td>
+     <td>${age}</td>
+     <td>${job}</td>
+     <td>
+       <button onclick="onDelete(${id})" class="btn btn-danger">Delete</button>
+     </td>
 
-    </tr>
-    `
-   }).filter(Boolean).join(" ")}
+   </tr>
+   `).filter(Boolean).join(" ")}
   </tbody>
   `
-  return 1
 }
 render()

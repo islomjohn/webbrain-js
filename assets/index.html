@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+  <main class="container mt-2 mb-5">
+    <h1 class="fs-3 text-center">
+      To Do || List
+    </h1>
+    <div class="text-center">
+      <span class="fs-5 bg-primary text-white badge badge-light"></span>
+    </div>
+
+    <section id="section" class="py-1">
+      <div class="mb-1 form-floating">
+        <input type="text" class="form-control" id="floatingSearch" placeholder="Search">
+        <label for="floatingSearch">Search</label>
+      </div>
+      <div class="input-group mb-1" >
+        <input type="text" id="form-name" class="form-control pt-2 pb-2" placeholder="Name" aria-label="name">
+        <input type="number" id="form-age" class="form-control pt-2 pb-2" placeholder="Age" aria-label="age">
+        <input type="text" id="form-job" class="form-control pt-2 pb-2" placeholder="Job" aria-label="job">
+        <button class="btn btn-primary" type="button"   id="button-addon2">Add new user </button>
+
+      </div>
+      
+      
+     <div class="table-responsive">
+      <table class="table table-hover table-bordered text-center">
+        <thead class="table-light">
+          <tr class="fs-5">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Job</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+      </table>
+     </div>
+    </section>
+  </main>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
